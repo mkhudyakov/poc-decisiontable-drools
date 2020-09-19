@@ -4,15 +4,17 @@ public class Employee {
 
     private RelationshipType relationshipType;
     private int years;
+    private boolean topPerformer;
 
     private boolean annualBonus;
 
     public Employee() {
     }
 
-    public Employee(RelationshipType relationshipType, int years) {
+    public Employee(RelationshipType relationshipType, int years, boolean topPerformer) {
         this.relationshipType = relationshipType;
         this.years = years;
+        this.topPerformer = topPerformer;
     }
 
     public RelationshipType getRelationshipType() {
@@ -37,5 +39,13 @@ public class Employee {
 
     public void setAnnualBonus(boolean annualBonus) {
         this.annualBonus = annualBonus;
+    }
+
+    public boolean isTopPerformer() {
+        return topPerformer;
+    }
+
+    public void setTopPerformer(boolean topPerformer) {
+        this.topPerformer = topPerformer;
     }
 }
