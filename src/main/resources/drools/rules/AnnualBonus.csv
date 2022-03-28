@@ -1,0 +1,15 @@
+﻿RuleSet,com.poc.decisiontable.drools,,,,
+Import,"com.poc.decisiontable.drools.model.Employee, com.poc.decisiontable.drools.model.RelationshipType",,,,
+Notes,Test Decision Table,,,,
+,,,,,
+RuleTable Annual Bonus,,,,,
+NAME,CONDITION,CONDITION,CONDITION,CONDITION,ACTION
+,$employee:Employee,Employee,Employee,Employee,
+,relationshipType in ($param),years >= ($param),years < ($param),topPerformer == ($param),$employee.setAnnualBonus($param);
+NAME,Relationship Type,Years,Years,Top Performance,Discount
+Employee years >= 3,RelationshipType.EMPLOYEE,3,,,Boolean.TRUE
+Employee years < 3,RelationshipType.EMPLOYEE,0,3,Boolean.FALSE,Boolean.FALSE
+"Employee years < 3, top performer",RelationshipType.EMPLOYEE,0,3,Boolean.TRUE,Boolean.TRUE
+Contractor years >= 5,RelationshipType.CONTRACTOR,5,,,Boolean.TRUE
+Contractor years < 5,RelationshipType.CONTRACTOR,0,5,Boolean.FALSE,Boolean.FALSE
+"Contractor years < 5, top performer",RelationshipType.CONTRACTOR,0,5,Boolean.TRUE,Boolean.TRUE

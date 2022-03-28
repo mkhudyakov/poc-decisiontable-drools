@@ -11,9 +11,7 @@ import org.drools.io.Resource;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatelessKnowledgeSession;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class Main {
 
@@ -34,13 +32,12 @@ public class Main {
     private static KnowledgeBase createKnowledgeBaseFromSpreadsheet()
             throws Exception {
 
-        final Resource classPathResource = ResourceFactory.newClassPathResource("drools/rules/AnnualBonus.xls");
+        final Resource classPathResource = ResourceFactory.newClassPathResource("drools/rules/AnnualBonus.csv");
         /* for the trace purpose only */
         traceTheRule(classPathResource);
 
-        DecisionTableConfiguration dtConf = KnowledgeBuilderFactory
-                .newDecisionTableConfiguration();
-        dtConf.setInputType(DecisionTableInputType.XLS);
+        DecisionTableConfiguration dtConf = KnowledgeBuilderFactory.newDecisionTableConfiguration();
+        dtConf.setInputType(DecisionTableInputType.CSV);
 
         KnowledgeBuilder knowledgeBuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         knowledgeBuilder.add(classPathResource, ResourceType.DTABLE, dtConf);
@@ -58,7 +55,7 @@ public class Main {
     private static void traceTheRule(Resource classPathResource) throws IOException {
 
         SpreadsheetCompiler compiler = new SpreadsheetCompiler();
-        String source = compiler.compile(classPathResource.getInputStream(), InputType.XLS);
+        String source = compiler.compile(classPathResource.getInputStream(), InputType.CSV);
         System.out.println(source);
     }
 }
